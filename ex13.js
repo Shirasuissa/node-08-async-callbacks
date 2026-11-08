@@ -9,6 +9,14 @@
 //
 // Run: node ex13.js
 
-const os = require("os");
+const os = require("os")
 
-// write your code here
+function getUptime(callback) {
+    const seconds = os.uptime()
+
+    callback(seconds)
+}
+
+getUptime((seconds) => {
+    console.log(`System uptime: ${Math.floor(seconds)} seconds`)
+});
