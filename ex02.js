@@ -16,3 +16,23 @@ const path = require("path");
 const directoryPath = path.join(__dirname, "my-folder");
 
 // write your code here
+fs.readdir(directoryPath, (err, files) => {
+    if(err) {
+        console.log(err.message)
+        return
+    }
+    files.forEach((item) => {
+        const filePath = path.join(directoryPath, item)
+
+        fs.lstat(filePath, (err, stats) => {
+            if(err) {
+                console.log(err.message)
+                return
+            }
+
+            if(stats.isFile()) {
+                console.log(`File: ${item}`)
+            }
+        })
+    })
+})
